@@ -1,0 +1,87 @@
+[gd_resource type="Resource" script_class="LevelData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/level_data.gd" id="1_yjk2p"]
+
+[resource]
+script = ExtResource("1_yjk2p")
+level_number = 6
+level_name = "Day 6: System Reboot"
+level_description = "Project Sigma is down, but the email system is fighting back with automated defenses."
+background_image = "res://assets/images/backgrounds/server_room_bg.png"
+music_track = "level_6"
+difficulty = 6
+enemy_count = 20
+enemy_types = ["regular", "spam", "urgent", "virus", "encrypted", "firewall"]
+spawn_delay = 0.8
+boss_level = false
+boss_type = ""
+boss_health = 100.0
+total_waves = 5
+time_limit = 330.0
+stress_recovery_rate = 0.8
+power_up_chance = 0.35
+keyboard_jam_chance = 0.25
+tutorial_level = false
+tutorial_steps = []
+next_level = "res://resources/levels/level_7.tres"
+is_unlocked = false
+level_complete_score = 6000
+level_complete_time_bonus = 2500
+level_complete_health_bonus = 1200
+level_complete_combo_bonus = 1200
+level_complete_perfect_bonus = 6000
+base_score = 6000
+time_bonus_multiplier = 30.0
+no_damage_bonus = 2500
+combo_bonus_multiplier = 20.0
+screen_effects = true
+screen_effect_intensity = 0.8
+background_scroll_speed = 0.6
+background_parallax_effect = true
+special_events = [{
+"event_type": "screen_shake",
+"trigger_time": 30.0,
+"duration": 4.0,
+"intensity": 12.0
+}, {
+"event_type": "bullet_storm",
+"trigger_time": 60.0,
+"duration": 12.0,
+"bullet_count": 50
+}, {
+"event_type": "power_surge",
+"trigger_time": 120.0,
+"duration": 20.0,
+"intensity": 4.0
+}, {
+"event_type": "time_slow",
+"trigger_time": 180.0,
+"duration": 8.0,
+"intensity": 0.4
+}]
+intro_dialog = [{
+"name": "IT Guy",
+"portrait": "it_guy",
+"text": "I've shut down the main Project Sigma servers, but the system has automated defenses!"
+}, {
+"name": "You",
+"portrait": "player",
+"text": "The emails are still coming in! They're even more aggressive now."
+}, {
+"name": "System",
+"portrait": "system",
+"text": "EMERGENCY PROTOCOLS ACTIVATED. DEPLOYING COUNTERMEASURES AGAINST UNAUTHORIZED SHUTDOWN."
+}]
+outro_dialog = [{
+"name": "IT Guy",
+"portrait": "it_guy",
+"text": "You did it! The system's defenses are down. But we need to find the backup servers."
+}, {
+"name": "You",
+"portrait": "player",
+"text": "Where would they be located?"
+}, {
+"name": "Coworker",
+"portrait": "coworker",
+"text": "I overheard the CEO talking about a secret data center in the basement. We need to go there."
+}]

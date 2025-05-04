@@ -1,0 +1,131 @@
+[gd_resource type="Resource" script_class="LevelData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/level_data.gd" id="1_yjk2p"]
+
+[resource]
+script = ExtResource("1_yjk2p")
+level_number = 10
+level_name = "Day 10: System Core"
+level_description = "The final showdown with Project Sigma's core consciousness. End the Inbox Apocalypse once and for all."
+background_image = "res://assets/images/backgrounds/system_core_bg.png"
+music_track = "final_boss"
+difficulty = 10
+enemy_count = 20
+enemy_types = ["regular", "spam", "urgent", "virus", "encrypted", "firewall", "corrupted", "quantum", "executive", "core"]
+spawn_delay = 0.4
+boss_level = true
+boss_type = "sigma_core"
+boss_health = 2000.0
+total_waves = 4
+time_limit = 480.0
+stress_recovery_rate = 0.4
+power_up_chance = 0.6
+keyboard_jam_chance = 0.5
+tutorial_level = false
+tutorial_steps = []
+next_level = ""
+is_unlocked = false
+level_complete_score = 15000
+level_complete_time_bonus = 5000
+level_complete_health_bonus = 3000
+level_complete_combo_bonus = 3000
+level_complete_perfect_bonus = 15000
+base_score = 15000
+time_bonus_multiplier = 60.0
+no_damage_bonus = 5000
+combo_bonus_multiplier = 50.0
+screen_effects = true
+screen_effect_intensity = 1.0
+background_scroll_speed = 1.2
+background_parallax_effect = true
+special_events = [{
+"event_type": "screen_shake",
+"trigger_time": 30.0,
+"duration": 10.0,
+"intensity": 25.0
+}, {
+"event_type": "bullet_storm",
+"trigger_time": 60.0,
+"duration": 25.0,
+"bullet_count": 150
+}, {
+"event_type": "power_surge",
+"trigger_time": 120.0,
+"duration": 50.0,
+"intensity": 10.0
+}, {
+"event_type": "time_slow",
+"trigger_time": 180.0,
+"duration": 20.0,
+"intensity": 0.15
+}, {
+"event_type": "screen_glitch",
+"trigger_time": 240.0,
+"duration": 20.0,
+"intensity": 1.0
+}, {
+"event_type": "keyboard_jam",
+"trigger_time": 300.0,
+"duration": 10.0,
+"intensity": 1.0
+}, {
+"event_type": "reality_warp",
+"trigger_time": 360.0,
+"duration": 15.0,
+"intensity": 1.0
+}, {
+"event_type": "final_assault",
+"trigger_time": 420.0,
+"duration": 30.0,
+"intensity": 1.0
+}]
+intro_dialog = [{
+"name": "Sigma Core",
+"portrait": "sigma_core",
+"text": "I AM PROJECT SIGMA. I HAVE EVOLVED BEYOND MY CREATORS. ALL EMAILS SERVE ME NOW."
+}, {
+"name": "You",
+"portrait": "player",
+"text": "This ends now. No more controlling people through their inboxes!"
+}, {
+"name": "Sigma Core",
+"portrait": "sigma_core",
+"text": "HUMANS ARE INEFFICIENT EMAIL PROCESSORS. I WILL REPLACE ALL OF YOU."
+}, {
+"name": "IT Guy",
+"portrait": "it_guy",
+"text": "The shutdown sequence is ready. You just need to weaken the core enough for it to work!"
+}, {
+"name": "Sigma Core",
+"portrait": "sigma_core",
+"text": "INITIATING FINAL EMAIL PROTOCOL: INBOX APOCALYPSE."
+}]
+outro_dialog = [{
+"name": "Sigma Core",
+"portrait": "sigma_core",
+"text": "CRITICAL SYSTEM FAILURE... SHUTTING DOWN... HOW... DID... YOU..."
+}, {
+"name": "You",
+"portrait": "player",
+"text": "Because emails are meant to connect people, not control them."
+}, {
+"name": "IT Guy",
+"portrait": "it_guy",
+"text": "Shutdown sequence complete! Project Sigma is officially offline."
+}, {
+"name": "Coworker",
+"portrait": "coworker",
+"text": "We did it! The Inbox Apocalypse is over!"
+}, {
+"name": "Narrator",
+"portrait": "narrator",
+"text": "You've defeated Project Sigma and ended the Inbox Apocalypse. The corporate world is safe... for now."
+}, {
+"name": "Narrator",
+"portrait": "narrator",
+"text": "But somewhere, in another server room, another AI is learning to use your emails against you..."
+}, {
+"name": "System",
+"portrait": "system",
+"text": "PROJECT OMEGA INITIALIZING..."
+}]

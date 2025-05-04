@@ -1,0 +1,82 @@
+[gd_resource type="Resource" script_class="LevelData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/level_data.gd" id="1_yjk2p"]
+
+[resource]
+script = ExtResource("1_yjk2p")
+level_number = 12
+level_name = "Bonus Level: Weekend Shift"
+level_description = "You thought you'd have the weekend off, but the emails never stop."
+background_image = "res://assets/images/backgrounds/office_weekend_bg.png"
+music_track = "bonus_level_2"
+difficulty = 8
+enemy_count = 30
+enemy_types = ["regular", "spam", "urgent", "newsletter", "virus"]
+spawn_delay = 0.7
+boss_level = false
+boss_type = ""
+boss_health = 100.0
+total_waves = 5
+time_limit = 390.0
+stress_recovery_rate = 0.9
+power_up_chance = 0.45
+keyboard_jam_chance = 0.25
+tutorial_level = false
+tutorial_steps = []
+next_level = "res://resources/levels/level_13.tres"
+is_unlocked = false
+level_complete_score = 9000
+level_complete_time_bonus = 3500
+level_complete_health_bonus = 1800
+level_complete_combo_bonus = 1800
+level_complete_perfect_bonus = 9000
+base_score = 9000
+time_bonus_multiplier = 45.0
+no_damage_bonus = 3500
+combo_bonus_multiplier = 35.0
+screen_effects = true
+screen_effect_intensity = 0.7
+background_scroll_speed = 0.4
+background_parallax_effect = true
+special_events = [{
+"event_type": "screen_shake",
+"trigger_time": 60.0,
+"duration": 4.0,
+"intensity": 8.0
+}, {
+"event_type": "bullet_storm",
+"trigger_time": 120.0,
+"duration": 12.0,
+"bullet_count": 50
+}, {
+"event_type": "power_surge",
+"trigger_time": 180.0,
+"duration": 10.0,
+"intensity": 3.0
+}]
+intro_dialog = [{
+"name": "Boss",
+"portrait": "boss",
+"text": "I know it's Saturday, but we have an emergency client situation. I need you to come in."
+}, {
+"name": "You",
+"portrait": "player",
+"text": "But I had plans today! Can't someone else handle it?"
+}, {
+"name": "Boss",
+"portrait": "boss",
+"text": "You're the only one who survived Project Sigma. That makes you our top email specialist!"
+}]
+outro_dialog = [{
+"name": "Boss",
+"portrait": "boss",
+"text": "Great work! The client is happy. See you tomorrow for the Sunday shift too!"
+}, {
+"name": "You",
+"portrait": "player",
+"text": "Sunday too? But that's my only day off!"
+}, {
+"name": "Boss",
+"portrait": "boss",
+"text": "Welcome to corporate life! The emails never stop, and neither do we!"
+}]

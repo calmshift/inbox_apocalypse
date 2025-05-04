@@ -4,22 +4,61 @@
 
 [resource]
 script = ExtResource("1_yjk2p")
+level_number = 5
 level_name = "Day 5: CEO Showdown"
 level_description = "The CEO has summoned you for a 'performance review'. Something feels very wrong."
+background_image = "res://assets/images/backgrounds/ceo_office_bg.png"
 music_track = "boss_theme"
 difficulty = 5
+enemy_count = 10
+enemy_types = ["regular", "spam", "urgent", "virus", "encrypted"]
+spawn_delay = 1.0
 boss_level = true
+boss_type = "ceo"
+boss_health = 500.0
 total_waves = 3
 time_limit = 300.0
 stress_recovery_rate = 1.0
 power_up_chance = 0.3
 keyboard_jam_chance = 0.2
+tutorial_level = false
+tutorial_steps = []
+next_level = "res://resources/levels/level_6.tres"
+is_unlocked = false
+level_complete_score = 5000
+level_complete_time_bonus = 2000
+level_complete_health_bonus = 1000
+level_complete_combo_bonus = 1000
+level_complete_perfect_bonus = 5000
 base_score = 5000
 time_bonus_multiplier = 25.0
 no_damage_bonus = 2000
 combo_bonus_multiplier = 15.0
 screen_effects = true
 screen_effect_intensity = 0.7
+background_scroll_speed = 0.5
+background_parallax_effect = true
+special_events = [{
+"event_type": "screen_shake",
+"trigger_time": 30.0,
+"duration": 3.0,
+"intensity": 10.0
+}, {
+"event_type": "bullet_storm",
+"trigger_time": 60.0,
+"duration": 10.0,
+"bullet_count": 40
+}, {
+"event_type": "power_surge",
+"trigger_time": 120.0,
+"duration": 15.0,
+"intensity": 3.0
+}, {
+"event_type": "time_slow",
+"trigger_time": 180.0,
+"duration": 5.0,
+"intensity": 0.5
+}]
 intro_dialog = [{
 "name": "CEO",
 "portrait": "ceo",

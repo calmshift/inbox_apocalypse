@@ -1,0 +1,77 @@
+[gd_resource type="Resource" script_class="LevelData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/level_data.gd" id="1_yjk2p"]
+
+[resource]
+script = ExtResource("1_yjk2p")
+level_number = 0
+level_name = "Tutorial: Email Basics"
+level_description = "Learn the basics of email management before starting your first day."
+background_image = "res://assets/images/backgrounds/tutorial_bg.png"
+music_track = "tutorial"
+difficulty = 1
+enemy_count = 3
+enemy_types = ["regular"]
+spawn_delay = 5.0
+boss_level = false
+boss_type = ""
+boss_health = 100.0
+total_waves = 3
+time_limit = 300.0
+stress_recovery_rate = 3.0
+power_up_chance = 0.0
+keyboard_jam_chance = 0.0
+tutorial_level = true
+tutorial_steps = [
+"Welcome to Inbox Apocalypse! Let's learn the basics of email management.",
+"Use the arrow keys or WASD to move your character around the screen.",
+"Emails will appear on screen. If left unanswered, they will open and attack!",
+"Press R to Reply to an email. This sends a focused attack straight ahead.",
+"Press F to Forward an email. This sends a wide spread of attacks.",
+"Press D to Delete an email. This creates a bomb that clears nearby bullets.",
+"Hold SHIFT to focus your movement for precise dodging between bullets.",
+"Try to keep your Stress Meter (health) low by avoiding email attacks.",
+"Clear all emails in each wave to progress to the next day.",
+"Good luck! Your corporate survival depends on your email management skills!"
+]
+next_level = "res://resources/levels/level_1.tres"
+is_unlocked = true
+level_complete_score = 500
+level_complete_time_bonus = 200
+level_complete_health_bonus = 100
+level_complete_combo_bonus = 100
+level_complete_perfect_bonus = 500
+base_score = 500
+time_bonus_multiplier = 5.0
+no_damage_bonus = 200
+combo_bonus_multiplier = 2.0
+screen_effects = false
+screen_effect_intensity = 0.1
+background_scroll_speed = 0.0
+background_parallax_effect = false
+intro_dialog = [{
+"name": "IT Guy",
+"portrait": "it_guy",
+"text": "Welcome to Megacorp Industries! Before you start your first day, let me show you how to handle emails."
+}, {
+"name": "You",
+"portrait": "player",
+"text": "Thanks, I appreciate the help. The emails here seem... different from what I'm used to."
+}, {
+"name": "IT Guy",
+"portrait": "it_guy",
+"text": "Oh, they're just a bit more... aggressive than standard emails. Nothing to worry about!"
+}]
+outro_dialog = [{
+"name": "IT Guy",
+"portrait": "it_guy",
+"text": "Great job! You've mastered the basics of email management."
+}, {
+"name": "You",
+"portrait": "player",
+"text": "Is it normal for emails to attack like that?"
+}, {
+"name": "IT Guy",
+"portrait": "it_guy",
+"text": "At Megacorp? Absolutely! Now you're ready for your first day. Good luck!"
+}]

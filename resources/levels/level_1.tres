@@ -4,22 +4,40 @@
 
 [resource]
 script = ExtResource("1_yjk2p")
+level_number = 1
 level_name = "Day 1: First Day Jitters"
 level_description = "Your first day at Megacorp Industries. The emails seem... aggressive."
+background_image = "res://assets/images/backgrounds/office_bg_1.png"
 music_track = "level_1"
 difficulty = 1
+enemy_count = 5
+enemy_types = ["regular"]
+spawn_delay = 3.0
 boss_level = false
+boss_type = ""
+boss_health = 100.0
 total_waves = 3
 time_limit = 180.0
 stress_recovery_rate = 2.0
 power_up_chance = 0.1
 keyboard_jam_chance = 0.0
+tutorial_level = false
+tutorial_steps = []
+next_level = "res://resources/levels/level_2.tres"
+is_unlocked = true
+level_complete_score = 1000
+level_complete_time_bonus = 500
+level_complete_health_bonus = 300
+level_complete_combo_bonus = 200
+level_complete_perfect_bonus = 1000
 base_score = 1000
 time_bonus_multiplier = 10.0
 no_damage_bonus = 500
 combo_bonus_multiplier = 5.0
 screen_effects = false
 screen_effect_intensity = 0.2
+background_scroll_speed = 0.0
+background_parallax_effect = false
 intro_dialog = [{
 "name": "Boss",
 "portrait": "boss",

@@ -1,0 +1,77 @@
+[gd_resource type="Resource" script_class="LevelData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/level_data.gd" id="1_yjk2p"]
+
+[resource]
+script = ExtResource("1_yjk2p")
+level_number = 13
+level_name = "Bonus Level: Vacation Inbox"
+level_description = "You're on vacation, but the emails have followed you to the beach!"
+background_image = "res://assets/images/backgrounds/beach_bg.png"
+music_track = "vacation_theme"
+difficulty = 6
+enemy_count = 20
+enemy_types = ["regular", "spam", "urgent", "newsletter"]
+spawn_delay = 1.0
+boss_level = false
+boss_type = ""
+boss_health = 100.0
+total_waves = 4
+time_limit = 300.0
+stress_recovery_rate = 1.2
+power_up_chance = 0.5
+keyboard_jam_chance = 0.1
+tutorial_level = false
+tutorial_steps = []
+next_level = "res://resources/levels/level_14.tres"
+is_unlocked = false
+level_complete_score = 7000
+level_complete_time_bonus = 2500
+level_complete_health_bonus = 1200
+level_complete_combo_bonus = 1200
+level_complete_perfect_bonus = 7000
+base_score = 7000
+time_bonus_multiplier = 35.0
+no_damage_bonus = 2500
+combo_bonus_multiplier = 25.0
+screen_effects = true
+screen_effect_intensity = 0.5
+background_scroll_speed = 0.2
+background_parallax_effect = true
+special_events = [{
+"event_type": "screen_shake",
+"trigger_time": 60.0,
+"duration": 2.0,
+"intensity": 4.0
+}, {
+"event_type": "bullet_storm",
+"trigger_time": 120.0,
+"duration": 8.0,
+"bullet_count": 30
+}]
+intro_dialog = [{
+"name": "You",
+"portrait": "player",
+"text": "Finally, a week of vacation! No emails, no boss, just relaxation."
+}, {
+"name": "Phone",
+"portrait": "phone",
+"text": "DING! You have 47 new emails that require immediate attention."
+}, {
+"name": "You",
+"portrait": "player",
+"text": "No! I turned on my out-of-office reply! How did they find me here?"
+}]
+outro_dialog = [{
+"name": "You",
+"portrait": "player",
+"text": "There. All emails answered. NOW I can relax."
+}, {
+"name": "Phone",
+"portrait": "phone",
+"text": "DING! Your boss has scheduled an emergency video call in 5 minutes."
+}, {
+"name": "You",
+"portrait": "player",
+"text": "I should have left my phone at home..."
+}]

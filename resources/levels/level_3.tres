@@ -4,22 +4,40 @@
 
 [resource]
 script = ExtResource("1_yjk2p")
+level_number = 3
 level_name = "Day 3: Urgent Matters"
 level_description = "The executives are demanding immediate responses to their urgent emails."
+background_image = "res://assets/images/backgrounds/office_bg_2.png"
 music_track = "level_3"
 difficulty = 3
+enemy_count = 12
+enemy_types = ["regular", "spam", "urgent"]
+spawn_delay = 1.8
 boss_level = false
+boss_type = ""
+boss_health = 100.0
 total_waves = 5
 time_limit = 240.0
 stress_recovery_rate = 1.5
 power_up_chance = 0.2
 keyboard_jam_chance = 0.1
+tutorial_level = false
+tutorial_steps = []
+next_level = "res://resources/levels/level_4.tres"
+is_unlocked = false
+level_complete_score = 2000
+level_complete_time_bonus = 800
+level_complete_health_bonus = 500
+level_complete_combo_bonus = 400
+level_complete_perfect_bonus = 2000
 base_score = 2000
 time_bonus_multiplier = 15.0
 no_damage_bonus = 1000
 combo_bonus_multiplier = 8.0
 screen_effects = true
 screen_effect_intensity = 0.4
+background_scroll_speed = 0.2
+background_parallax_effect = true
 intro_dialog = [{
 "name": "Boss",
 "portrait": "boss",

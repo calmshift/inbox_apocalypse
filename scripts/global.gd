@@ -8,11 +8,21 @@ var level_paths = [
 	"res://resources/levels/level_2.tres",
 	"res://resources/levels/level_3.tres",
 	"res://resources/levels/level_4.tres",
-	"res://resources/levels/level_5.tres"
+	"res://resources/levels/level_5.tres",
+	"res://resources/levels/level_6.tres",
+	"res://resources/levels/level_7.tres",
+	"res://resources/levels/level_8.tres",
+	"res://resources/levels/level_9.tres",
+	"res://resources/levels/level_10.tres",
+	"res://resources/levels/level_11.tres",
+	"res://resources/levels/level_12.tres",
+	"res://resources/levels/level_13.tres",
+	"res://resources/levels/level_14.tres",
+	"res://resources/levels/level_15.tres"
 ]
-var unlocked_levels = [true, false, false, false, false]  # First level is unlocked by default
+var unlocked_levels = [true, false, false, false, false, false, false, false, false, false, false, false, false, false, false]  # First level is unlocked by default
 var player_score = 0
-var high_scores = [0, 0, 0, 0, 0]  # High score for each level
+var high_scores = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]  # High score for each level
 var max_combo_achieved = 0
 var total_emails_cleared = 0
 var total_deaths = 0

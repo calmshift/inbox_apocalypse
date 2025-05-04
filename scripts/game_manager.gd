@@ -39,6 +39,8 @@ var keyboard_jam_timer: float = 0
 var power_up_timer: float = 0
 var story_manager = null
 var tutorial_manager = null
+var special_events = []
+var current_special_event = null
 
 func _ready():
 	# Find story manager
@@ -53,6 +55,10 @@ func _ready():
 		# Set player stress recovery rate
 		if player and level_data.stress_recovery_rate > 0:
 			player.stress_recovery_rate = level_data.stress_recovery_rate
+		
+		# Load special events
+		if level_data.has("special_events"):
+			special_events = level_data.special_events.duplicate()
 	
 	# Check if tutorial mode
 	if tutorial_mode:
@@ -99,8 +105,57 @@ func _process(delta):
 		power_up_timer += delta
 		if power_up_timer >= 15.0:  # Check every 15 seconds
 			power_up_timer = 0
-			if randf() < 0.3:  # 30% chance of random power-up
+			if level_data and randf() < level_data.power_up_chance:
 				spawn_power_up()
+		
+		# Check for special events
+		check_special_events(delta)
+
+func check_special_events(delta):
+	if special_events.size() > 0 and not current_special_event:
+		var elapsed_time = (Time.get_ticks_msec() / 1000.0) - level_start_time
+		
+		for i in range(special_events.size()):
+			var event = special_events[i]
+			if event.has("trigger_time") and elapsed_time >= event.trigger_time:
+				# Trigger this event
+				current_special_event = event
+				special_events.remove_at(i)
+				
+				# Execute the event
+				execute_special_event(current_special_event)
+				break
+
+func execute_special_event(event):
+	match event.event_type:
+		"screen_shake":
+			screen_shake(event.duration, event.intensity)
+			await get_tree().create_timer(event.duration).timeout
+			current_special_event = null
+		
+		"bullet_storm":
+			load("res://scripts/special_effects.gd").bullet_storm(self, event.bullet_count, event.duration)
+			await get_tree().create_timer(event.duration).timeout
+			current_special_event = null
+		
+		"power_surge":
+			load("res://scripts/special_effects.gd").power_surge(self, event.duration, event.intensity)
+			await get_tree().create_timer(event.duration).timeout
+			current_special_event = null
+		
+		"time_slow":
+			load("res://scripts/special_effects.gd").time_slow(self, event.duration, event.intensity)
+			await get_tree().create_timer(event.duration).timeout
+			current_special_event = null
+		
+		"screen_glitch":
+			load("res://scripts/special_effects.gd").screen_glitch(self, event.duration, event.intensity)
+			await get_tree().create_timer(event.duration).timeout
+			current_special_event = null
+		
+		_:
+			# Unknown event type, just clear it
+			current_special_event = null
 
 func _on_intro_dialog_finished():
 	is_intro_playing = false
@@ -158,7 +213,7 @@ func start_next_wave():
 	# Check if we've completed all waves
 	if level_data and current_wave > level_data.total_waves:
 		# Check if this is a boss level
-		if level_data.boss_level and level_data.boss_scene and not is_boss_active:
+		if level_data.boss_level and not is_boss_active:
 			start_boss_fight()
 		else:
 			complete_level()
@@ -192,68 +247,151 @@ func spawn_wave_enemies(wave):
 	if wave.spawn_all_at_once:
 		spawn_interval = 0
 	
-	# Spawn enemies
-	for i in range(spawn_count):
-		if is_game_over or is_level_complete:
-			break
+	# Check if wave has predefined enemies
+	if wave.enemies.size() > 0:
+		# Spawn predefined enemies
+		for i in range(wave.enemies.size()):
+			if is_game_over or is_level_complete:
+				break
+				
+			var enemy_data = wave.enemies[i]
 			
-		# Wait between spawns
-		if spawn_interval > 0 and i > 0:
-			await get_tree().create_timer(spawn_interval).timeout
-		
-		# Create enemy
-		var enemy = enemy_scene.instantiate()
-		
-		# Set enemy type
-		var enemy_type = "regular"
-		if wave.enemy_types.size() > 0:
-			enemy_type = wave.enemy_types[randi() % wave.enemy_types.size()]
-		enemy.email_type = enemy_type
-		
-		# Set spawn position
-		var spawn_pos = get_spawn_position()
-		if wave.spawn_positions.size() > i:
-			spawn_pos = wave.spawn_positions[i]
-		enemy.global_position = spawn_pos
-		
-		# Set target position
-		var target_pos = Vector2(randf_range(100, get_viewport().get_visible_rect().size.x - 100), 150)
-		if wave.target_positions.size() > i:
-			target_pos = wave.target_positions[i]
-		enemy.set_target_position(target_pos)
-		
-		# Set subject line based on type
-		match enemy_type:
-			"regular":
-				enemy.subject_line = get_random_subject("regular")
-			"urgent":
-				enemy.subject_line = get_random_subject("urgent")
-			"spam":
-				enemy.subject_line = get_random_subject("spam")
-			"newsletter":
-				enemy.subject_line = get_random_subject("newsletter")
-		
-		# Set bullet pattern based on type
-		var pattern_scene = null
-		match enemy_type:
-			"regular":
-				pattern_scene = load("res://scenes/bullet_patterns/basic_pattern.tscn")
-			"urgent":
-				pattern_scene = load("res://scenes/bullet_patterns/burst_pattern.tscn")
-			"spam":
-				pattern_scene = load("res://scenes/bullet_patterns/spiral_pattern.tscn")
-			"newsletter":
-				pattern_scene = load("res://scenes/bullet_patterns/wave_pattern.tscn")
-		
-		if pattern_scene:
-			enemy.bullet_pattern = pattern_scene
-		
-		# Connect signals
-		enemy.connect("enemy_died", Callable(self, "_on_enemy_died"))
-		
-		# Add to scene
-		add_child(enemy)
-		wave_enemies.append(enemy)
+			# Wait between spawns
+			if enemy_data.has("delay") and enemy_data.delay > 0 and i > 0:
+				await get_tree().create_timer(enemy_data.delay).timeout
+			
+			# Create enemy
+			var enemy = enemy_scene.instantiate()
+			
+			# Set enemy properties from data
+			if enemy_data.has("sender"):
+				enemy.sender = enemy_data.sender
+			
+			if enemy_data.has("subject_line"):
+				enemy.subject_line = enemy_data.subject_line
+			
+			if enemy_data.has("health"):
+				enemy.health = enemy_data.health
+				enemy.current_health = enemy_data.health
+			
+			if enemy_data.has("speed"):
+				enemy.speed = enemy_data.speed
+			
+			if enemy_data.has("time_to_open"):
+				enemy.time_to_open = enemy_data.time_to_open
+			
+			if enemy_data.has("bullet_pattern") and enemy_data.bullet_pattern:
+				enemy.bullet_pattern = enemy_data.bullet_pattern
+			
+			# Set spawn position
+			var spawn_pos = get_spawn_position()
+			if enemy_data.has("move_pattern"):
+				# Use first point of curve as spawn position
+				var curve = enemy_data.move_pattern
+				if curve and curve.get_point_count() > 0:
+					spawn_pos = curve.get_point_position(0)
+				enemy.move_pattern = curve
+			enemy.global_position = spawn_pos
+			
+			# Set target position
+			var target_pos = Vector2(randf_range(100, get_viewport().get_visible_rect().size.x - 100), 150)
+			if enemy_data.has("target_position"):
+				target_pos = enemy_data.target_position
+			enemy.set_target_position(target_pos)
+			
+			# Connect signals
+			enemy.connect("enemy_died", Callable(self, "_on_enemy_died"))
+			
+			# Add to scene
+			add_child(enemy)
+			wave_enemies.append(enemy)
+	else:
+		# Spawn random enemies based on wave properties
+		for i in range(spawn_count):
+			if is_game_over or is_level_complete:
+				break
+				
+			# Wait between spawns
+			if spawn_interval > 0 and i > 0:
+				await get_tree().create_timer(spawn_interval).timeout
+			
+			# Create enemy
+			var enemy = enemy_scene.instantiate()
+			
+			# Set enemy type
+			var enemy_type = "regular"
+			if wave.enemy_types.size() > 0:
+				enemy_type = wave.enemy_types[randi() % wave.enemy_types.size()]
+			enemy.email_type = enemy_type
+			
+			# Set spawn position
+			var spawn_pos = get_spawn_position()
+			if wave.spawn_positions.size() > i:
+				spawn_pos = wave.spawn_positions[i]
+			enemy.global_position = spawn_pos
+			
+			# Set target position
+			var target_pos = Vector2(randf_range(100, get_viewport().get_visible_rect().size.x - 100), 150)
+			if wave.target_positions.size() > i:
+				target_pos = wave.target_positions[i]
+			enemy.set_target_position(target_pos)
+			
+			# Set subject line based on type
+			enemy.subject_line = load("res://scripts/email_subjects.gd").get_subject(enemy_type)
+			
+			# Set bullet pattern based on type
+			var pattern_scene = null
+			match enemy_type:
+				"regular":
+					pattern_scene = load("res://scenes/bullet_patterns/basic_pattern.tscn")
+					enemy.health = 30.0
+				"urgent":
+					pattern_scene = load("res://scenes/bullet_patterns/burst_pattern.tscn")
+					enemy.health = 40.0
+				"spam":
+					pattern_scene = load("res://scenes/bullet_patterns/spiral_pattern.tscn")
+					enemy.health = 25.0
+				"newsletter":
+					pattern_scene = load("res://scenes/bullet_patterns/wave_pattern.tscn")
+					enemy.health = 35.0
+				"virus":
+					pattern_scene = load("res://scenes/bullet_patterns/homing_pattern.tscn")
+					enemy.health = 45.0
+				"encrypted":
+					pattern_scene = load("res://scenes/bullet_patterns/random_pattern.tscn")
+					enemy.health = 50.0
+				"firewall":
+					pattern_scene = load("res://scenes/bullet_patterns/wall_pattern.tscn")
+					enemy.health = 60.0
+				"corrupted":
+					pattern_scene = load("res://scenes/bullet_patterns/glitch_pattern.tscn")
+					enemy.health = 55.0
+				"quantum":
+					pattern_scene = load("res://scenes/bullet_patterns/quantum_pattern.tscn")
+					enemy.health = 70.0
+				"executive":
+					pattern_scene = load("res://scenes/bullet_patterns/executive_pattern.tscn")
+					enemy.health = 80.0
+				"personal":
+					pattern_scene = load("res://scenes/bullet_patterns/personal_pattern.tscn")
+					enemy.health = 30.0
+				"core":
+					pattern_scene = load("res://scenes/bullet_patterns/core_pattern.tscn")
+					enemy.health = 100.0
+			
+			# Adjust health based on wave number
+			enemy.health *= (1.0 + (current_wave - 1) * 0.2)
+			enemy.current_health = enemy.health
+			
+			if pattern_scene:
+				enemy.bullet_pattern = pattern_scene
+			
+			# Connect signals
+			enemy.connect("enemy_died", Callable(self, "_on_enemy_died"))
+			
+			# Add to scene
+			add_child(enemy)
+			wave_enemies.append(enemy)
 	
 	# Wait until all enemies are defeated
 	while not wave_enemies.is_empty() and not is_game_over and not is_level_complete:
@@ -277,24 +415,72 @@ func start_boss_fight():
 	is_boss_active = true
 	
 	# Play boss music
-	SoundManager.play_music("boss_theme")
+	if level_data.music_track.contains("boss"):
+		SoundManager.play_music(level_data.music_track)
+	else:
+		SoundManager.play_music("boss_theme")
 	
 	# Show boss intro
 	if story_manager:
-		story_manager.show_dialog("BOSS", "Prepare for your final challenge!")
+		var boss_name = "BOSS"
+		if level_data.boss_type:
+			boss_name = level_data.boss_type.capitalize()
+		
+		story_manager.show_dialog(boss_name, "Prepare for your final challenge!")
 		await story_manager.dialog_finished
 	
 	# Spawn boss
-	boss_enemy = level_data.boss_scene.instantiate()
+	var boss_scene = null
+	
+	# Try to load boss scene based on boss_type
+	if level_data.boss_type:
+		var boss_path = "res://scenes/bosses/" + level_data.boss_type + "_boss.tscn"
+		if ResourceLoader.exists(boss_path):
+			boss_scene = load(boss_path)
+	
+	# Fall back to boss_scene if specified
+	if not boss_scene and level_data.boss_scene:
+		boss_scene = level_data.boss_scene
+	
+	# Fall back to generic boss if needed
+	if not boss_scene:
+		boss_scene = load("res://scenes/bosses/generic_boss.tscn")
+	
+	# Instantiate boss
+	boss_enemy = boss_scene.instantiate()
 	boss_enemy.global_position = get_spawn_position()
 	boss_enemy.set_target_position(Vector2(get_viewport().get_visible_rect().size.x / 2, 150))
+	
+	# Set boss health
+	if level_data.boss_health > 0:
+		boss_enemy.health = level_data.boss_health
+		boss_enemy.current_health = level_data.boss_health
+	
+	# Set boss type
+	if level_data.boss_type:
+		boss_enemy.boss_type = level_data.boss_type
+	
+	# Connect signals
 	boss_enemy.connect("enemy_died", Callable(self, "_on_boss_died"))
-	boss_enemy.connect("phase_changed", Callable(self, "_on_boss_phase_changed"))
+	if boss_enemy.has_signal("phase_changed"):
+		boss_enemy.connect("phase_changed", Callable(self, "_on_boss_phase_changed"))
+	
+	# Add to scene
 	add_child(boss_enemy)
 	
+	# Apply screen effects
+	if level_data.screen_effects:
+		screen_shake(1.0, level_data.screen_effect_intensity * 10.0)
+	
 	# Update UI
-	emit_signal("wave_changed", current_wave, "BOSS FIGHT")
+	var boss_name = "BOSS FIGHT"
+	if level_data.boss_type:
+		boss_name = level_data.boss_type.to_upper() + " BOSS"
+	emit_signal("wave_changed", current_wave, boss_name)
 	emit_signal("boss_health_changed", 1.0)
+	
+	# Play boss intro sound
+	SoundManager.play_sound("boss_intro")
 
 func _on_boss_phase_changed(phase):
 	# Play phase transition sound
@@ -450,43 +636,6 @@ func screen_shake(duration: float, intensity: float):
 		
 		camera.position = original_pos
 
-func get_random_subject(type: String) -> String:
-	var subjects = {
-		"regular": [
-			"Meeting Tomorrow",
-			"Project Update",
-			"New Policy",
-			"Team Lunch",
-			"Quarterly Report"
-		],
-		"urgent": [
-			"URGENT: Deadline Today",
-			"IMMEDIATE ACTION REQUIRED",
-			"ASAP: Client Request",
-			"URGENT: Server Down",
-			"CRITICAL: CEO Request"
-		],
-		"spam": [
-			"You Won $1,000,000!!!",
-			"Hot Singles In Your Area",
-			"Enlarge Your... Productivity",
-			"Cheap Medication",
-			"Nigerian Prince Needs Help"
-		],
-		"newsletter": [
-			"Weekly Company Update",
-			"Monthly Newsletter",
-			"Employee Spotlight",
-			"New Benefits Program",
-			"Upcoming Events"
-		]
-	}
-	
-	if subjects.has(type) and subjects[type].size() > 0:
-		return subjects[type][randi() % subjects[type].size()]
-	else:
-		return "Email Subject"
-
 func _input(event):
 	if is_game_over:
 		if event.is_action_pressed("ui_accept"):
@@ -515,3 +664,27 @@ func toggle_pause():
 	
 	if has_node("PauseMenu"):
 		$PauseMenu.visible = is_paused
+
+# Button handlers
+func _on_reply_button_pressed():
+	if player and not is_game_over and not is_level_complete and not is_paused:
+		player.use_reply()
+
+func _on_forward_button_pressed():
+	if player and not is_game_over and not is_level_complete and not is_paused:
+		player.use_forward()
+
+func _on_delete_button_pressed():
+	if player and not is_game_over and not is_level_complete and not is_paused:
+		player.use_delete()
+
+func _on_resume_button_pressed():
+	toggle_pause()
+
+func _on_restart_button_pressed():
+	get_tree().paused = false
+	get_tree().reload_current_scene()
+
+func _on_quit_button_pressed():
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

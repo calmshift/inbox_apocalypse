@@ -1,0 +1,229 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_yjk2p"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="2_a8b7c"]
+[ext_resource type="Resource" path="res://resources/levels/tutorial.tres" id="3_c9d0e"]
+[ext_resource type="Script" path="res://scripts/tutorial_manager.gd" id="4_f1g2h"]
+
+[node name="Tutorial" type="Node2D"]
+script = ExtResource("1_yjk2p")
+player_scene = ExtResource("2_a8b7c")
+level_data = ExtResource("3_c9d0e")
+tutorial_mode = true
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(640, 360)
+texture = ExtResource("3_c9d0e").background_image
+
+[node name="PlayerSpawnPosition" type="Marker2D" parent="."]
+position = Vector2(640, 600)
+
+[node name="EnemySpawnPoints" type="Node2D" parent="."]
+
+[node name="SpawnPoint1" type="Marker2D" parent="EnemySpawnPoints"]
+position = Vector2(200, -50)
+
+[node name="SpawnPoint2" type="Marker2D" parent="EnemySpawnPoints"]
+position = Vector2(400, -50)
+
+[node name="SpawnPoint3" type="Marker2D" parent="EnemySpawnPoints"]
+position = Vector2(640, -50)
+
+[node name="SpawnPoint4" type="Marker2D" parent="EnemySpawnPoints"]
+position = Vector2(880, -50)
+
+[node name="SpawnPoint5" type="Marker2D" parent="EnemySpawnPoints"]
+position = Vector2(1080, -50)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(640, 360)
+
+[node name="TutorialManager" type="Node" parent="."]
+script = ExtResource("4_f1g2h")
+tutorial_steps = ExtResource("3_c9d0e").tutorial_steps
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="ScoreLabel" type="Label" parent="UI"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 200.0
+offset_bottom = 60.0
+theme_override_font_sizes/font_size = 24
+text = "Score: 0"
+
+[node name="WaveLabel" type="Label" parent="UI"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_top = 20.0
+offset_right = 100.0
+offset_bottom = 60.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 24
+text = "Tutorial"
+horizontal_alignment = 1
+
+[node name="StressBar" type="ProgressBar" parent="UI"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -220.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 50.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+max_value = 1.0
+value = 0.5
+fill_mode = 1
+
+[node name="StressLabel" type="Label" parent="UI/StressBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.0
+offset_top = -11.5
+offset_right = 43.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Stress: 50%"
+horizontal_alignment = 1
+
+[node name="ActionButtons" type="HBoxContainer" parent="UI"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_top = -100.0
+offset_right = 300.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="ReplyButton" type="Button" parent="UI/ActionButtons"]
+custom_minimum_size = Vector2(180, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Reply (R)"
+
+[node name="ForwardButton" type="Button" parent="UI/ActionButtons"]
+custom_minimum_size = Vector2(180, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Forward (F)"
+
+[node name="DeleteButton" type="Button" parent="UI/ActionButtons"]
+custom_minimum_size = Vector2(180, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Delete (D)"
+
+[node name="TimeLabel" type="Label" parent="UI"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_top = 60.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 20
+text = "Time: 5:00"
+horizontal_alignment = 1
+
+[node name="ComboLabel" type="Label" parent="UI"]
+offset_left = 20.0
+offset_top = 60.0
+offset_right = 200.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 20
+text = "Combo: 0"
+
+[node name="PauseMenu" type="Panel" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 440.0
+offset_top = 210.0
+offset_right = 840.0
+offset_bottom = 510.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -43.0
+offset_top = 20.0
+offset_right = 43.0
+offset_bottom = 46.0
+grow_horizontal = 2
+text = "PAUSED"
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -50.0
+offset_right = 80.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Resume"
+
+[node name="RestartButton" type="Button" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = 0.0
+offset_right = 80.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Restart"
+
+[node name="QuitButton" type="Button" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = 50.0
+offset_right = 80.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Quit"
+
+[connection signal="pressed" from="UI/ActionButtons/ReplyButton" to="." method="_on_reply_button_pressed"]
+[connection signal="pressed" from="UI/ActionButtons/ForwardButton" to="." method="_on_forward_button_pressed"]
+[connection signal="pressed" from="UI/ActionButtons/DeleteButton" to="." method="_on_delete_button_pressed"]
+[connection signal="pressed" from="PauseMenu/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="PauseMenu/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="PauseMenu/QuitButton" to="." method="_on_quit_button_pressed"]

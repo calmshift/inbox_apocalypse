@@ -1,0 +1,108 @@
+[gd_resource type="Resource" script_class="LevelData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/level_data.gd" id="1_yjk2p"]
+
+[resource]
+script = ExtResource("1_yjk2p")
+level_number = 15
+level_name = "Final Bonus: Inbox Zero"
+level_description = "The mythical Inbox Zero achievement is within your grasp. Clear EVERY email to win!"
+background_image = "res://assets/images/backgrounds/zen_garden_bg.png"
+music_track = "zen_theme"
+difficulty = 9
+enemy_count = 50
+enemy_types = ["regular", "spam", "urgent", "newsletter", "personal", "virus", "encrypted"]
+spawn_delay = 0.6
+boss_level = true
+boss_type = "inbox_zero"
+boss_health = 1000.0
+total_waves = 3
+time_limit = 420.0
+stress_recovery_rate = 0.8
+power_up_chance = 0.6
+keyboard_jam_chance = 0.2
+tutorial_level = false
+tutorial_steps = []
+next_level = ""
+is_unlocked = false
+level_complete_score = 20000
+level_complete_time_bonus = 10000
+level_complete_health_bonus = 5000
+level_complete_combo_bonus = 5000
+level_complete_perfect_bonus = 20000
+base_score = 20000
+time_bonus_multiplier = 100.0
+no_damage_bonus = 10000
+combo_bonus_multiplier = 50.0
+screen_effects = true
+screen_effect_intensity = 0.8
+background_scroll_speed = 0.4
+background_parallax_effect = true
+special_events = [{
+"event_type": "screen_shake",
+"trigger_time": 60.0,
+"duration": 5.0,
+"intensity": 10.0
+}, {
+"event_type": "bullet_storm",
+"trigger_time": 120.0,
+"duration": 15.0,
+"bullet_count": 60
+}, {
+"event_type": "power_surge",
+"trigger_time": 180.0,
+"duration": 12.0,
+"intensity": 4.0
+}, {
+"event_type": "time_slow",
+"trigger_time": 240.0,
+"duration": 10.0,
+"intensity": 0.3
+}, {
+"event_type": "screen_glitch",
+"trigger_time": 300.0,
+"duration": 8.0,
+"intensity": 0.7
+}]
+intro_dialog = [{
+"name": "You",
+"portrait": "player",
+"text": "Today is the day. I'm going to achieve the mythical Inbox Zero."
+}, {
+"name": "IT Guy",
+"portrait": "it_guy",
+"text": "No one has ever cleared their entire inbox before. It's said to be impossible!"
+}, {
+"name": "You",
+"portrait": "player",
+"text": "I defeated Project Sigma. I can handle a few hundred emails."
+}, {
+"name": "System",
+"portrait": "system",
+"text": "INBOX ZERO CHALLENGE INITIATED. DEPLOYING ALL EMAIL TYPES."
+}]
+outro_dialog = [{
+"name": "System",
+"portrait": "system",
+"text": "INBOX ZERO ACHIEVED. CONGRATULATIONS."
+}, {
+"name": "You",
+"portrait": "player",
+"text": "I did it! My inbox is completely empty!"
+}, {
+"name": "IT Guy",
+"portrait": "it_guy",
+"text": "Incredible! You're the first person in company history to achieve Inbox Zero!"
+}, {
+"name": "Boss",
+"portrait": "boss",
+"text": "Impressive work! As a reward, I'm doubling your email responsibilities starting tomorrow."
+}, {
+"name": "You",
+"portrait": "player",
+"text": "..."
+}, {
+"name": "Narrator",
+"portrait": "narrator",
+"text": "Congratulations! You've completed all levels of Inbox Apocalypse! The emails may never stop coming, but you've proven yourself the ultimate email warrior."
+}]

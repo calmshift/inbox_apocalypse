@@ -1,0 +1,77 @@
+[gd_resource type="Resource" script_class="LevelData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/level_data.gd" id="1_yjk2p"]
+
+[resource]
+script = ExtResource("1_yjk2p")
+level_number = 11
+level_name = "Bonus Level: Overtime"
+level_description = "The system may be down, but there's still a backlog of emails to process."
+background_image = "res://assets/images/backgrounds/office_night_bg.png"
+music_track = "bonus_level"
+difficulty = 7
+enemy_count = 25
+enemy_types = ["regular", "spam", "urgent", "newsletter"]
+spawn_delay = 0.8
+boss_level = false
+boss_type = ""
+boss_health = 100.0
+total_waves = 5
+time_limit = 360.0
+stress_recovery_rate = 1.0
+power_up_chance = 0.4
+keyboard_jam_chance = 0.2
+tutorial_level = false
+tutorial_steps = []
+next_level = "res://resources/levels/level_12.tres"
+is_unlocked = false
+level_complete_score = 8000
+level_complete_time_bonus = 3000
+level_complete_health_bonus = 1500
+level_complete_combo_bonus = 1500
+level_complete_perfect_bonus = 8000
+base_score = 8000
+time_bonus_multiplier = 40.0
+no_damage_bonus = 3000
+combo_bonus_multiplier = 30.0
+screen_effects = true
+screen_effect_intensity = 0.6
+background_scroll_speed = 0.3
+background_parallax_effect = true
+special_events = [{
+"event_type": "screen_shake",
+"trigger_time": 60.0,
+"duration": 3.0,
+"intensity": 5.0
+}, {
+"event_type": "bullet_storm",
+"trigger_time": 120.0,
+"duration": 10.0,
+"bullet_count": 40
+}]
+intro_dialog = [{
+"name": "Boss",
+"portrait": "boss",
+"text": "Project Sigma may be shut down, but we still have a company to run. I need you to work overtime."
+}, {
+"name": "You",
+"portrait": "player",
+"text": "But it's already 8 PM! I've been fighting evil emails all day!"
+}, {
+"name": "Boss",
+"portrait": "boss",
+"text": "That's the corporate world for you. These client emails won't answer themselves!"
+}]
+outro_dialog = [{
+"name": "Boss",
+"portrait": "boss",
+"text": "Good work. You can go home now... but be back at 6 AM sharp!"
+}, {
+"name": "You",
+"portrait": "player",
+"text": "At least these emails aren't trying to delete my existence anymore."
+}, {
+"name": "Coworker",
+"portrait": "coworker",
+"text": "Don't jinx it. I swear I saw that newsletter email move on its own..."
+}]

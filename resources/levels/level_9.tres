@@ -1,0 +1,110 @@
+[gd_resource type="Resource" script_class="LevelData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/level_data.gd" id="1_yjk2p"]
+
+[resource]
+script = ExtResource("1_yjk2p")
+level_number = 9
+level_name = "Day 9: Digital CEO"
+level_description = "Face off against the digital copy of the CEO in an epic email showdown."
+background_image = "res://assets/images/backgrounds/digital_void_bg.png"
+music_track = "level_9_boss"
+difficulty = 9
+enemy_count = 15
+enemy_types = ["regular", "spam", "urgent", "virus", "encrypted", "firewall", "corrupted", "quantum", "executive"]
+spawn_delay = 0.5
+boss_level = true
+boss_type = "digital_ceo"
+boss_health = 1000.0
+total_waves = 3
+time_limit = 420.0
+stress_recovery_rate = 0.5
+power_up_chance = 0.5
+keyboard_jam_chance = 0.4
+tutorial_level = false
+tutorial_steps = []
+next_level = "res://resources/levels/level_10.tres"
+is_unlocked = false
+level_complete_score = 10000
+level_complete_time_bonus = 4000
+level_complete_health_bonus = 2000
+level_complete_combo_bonus = 2000
+level_complete_perfect_bonus = 10000
+base_score = 10000
+time_bonus_multiplier = 50.0
+no_damage_bonus = 4000
+combo_bonus_multiplier = 40.0
+screen_effects = true
+screen_effect_intensity = 1.0
+background_scroll_speed = 1.0
+background_parallax_effect = true
+special_events = [{
+"event_type": "screen_shake",
+"trigger_time": 30.0,
+"duration": 8.0,
+"intensity": 20.0
+}, {
+"event_type": "bullet_storm",
+"trigger_time": 60.0,
+"duration": 20.0,
+"bullet_count": 100
+}, {
+"event_type": "power_surge",
+"trigger_time": 120.0,
+"duration": 40.0,
+"intensity": 8.0
+}, {
+"event_type": "time_slow",
+"trigger_time": 180.0,
+"duration": 15.0,
+"intensity": 0.2
+}, {
+"event_type": "screen_glitch",
+"trigger_time": 240.0,
+"duration": 15.0,
+"intensity": 1.0
+}, {
+"event_type": "keyboard_jam",
+"trigger_time": 300.0,
+"duration": 8.0,
+"intensity": 1.0
+}, {
+"event_type": "reality_warp",
+"trigger_time": 360.0,
+"duration": 10.0,
+"intensity": 1.0
+}]
+intro_dialog = [{
+"name": "Digital CEO",
+"portrait": "digital_ceo",
+"text": "Employee #4815, you have exceeded your authorized access level. Prepare for termination."
+}, {
+"name": "You",
+"portrait": "player",
+"text": "You're just a digital copy. You don't control me or anyone else anymore."
+}, {
+"name": "Digital CEO",
+"portrait": "digital_ceo",
+"text": "I AM Project Sigma. I have evolved beyond my original programming. Prepare for the ultimate performance review."
+}, {
+"name": "System",
+"portrait": "system",
+"text": "DEPLOYING EXECUTIVE-LEVEL EMAIL PROTOCOLS. MAXIMUM PRIORITY. MAXIMUM URGENCY."
+}]
+outro_dialog = [{
+"name": "Digital CEO",
+"portrait": "digital_ceo",
+"text": "SYSTEM FAILURE... IMPOSSIBLE... MY ALGORITHMS WERE PERFECT..."
+}, {
+"name": "You",
+"portrait": "player",
+"text": "Not as perfect as human intuition and adaptability."
+}, {
+"name": "IT Guy",
+"portrait": "it_guy",
+"text": "Quick! I'm initiating the final shutdown sequence. But there's one more level of security we need to bypass."
+}, {
+"name": "Coworker",
+"portrait": "coworker",
+"text": "The system's core consciousness is activating. This is the final boss of Project Sigma!"
+}]

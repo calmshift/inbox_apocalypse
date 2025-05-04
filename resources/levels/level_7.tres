@@ -1,0 +1,96 @@
+[gd_resource type="Resource" script_class="LevelData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/level_data.gd" id="1_yjk2p"]
+
+[resource]
+script = ExtResource("1_yjk2p")
+level_number = 7
+level_name = "Day 7: Basement Descent"
+level_description = "You've found the secret data center in the basement. The emails here are corrupted and dangerous."
+background_image = "res://assets/images/backgrounds/basement_bg.png"
+music_track = "level_7"
+difficulty = 7
+enemy_count = 25
+enemy_types = ["regular", "spam", "urgent", "virus", "encrypted", "firewall", "corrupted"]
+spawn_delay = 0.7
+boss_level = false
+boss_type = ""
+boss_health = 100.0
+total_waves = 6
+time_limit = 360.0
+stress_recovery_rate = 0.7
+power_up_chance = 0.4
+keyboard_jam_chance = 0.3
+tutorial_level = false
+tutorial_steps = []
+next_level = "res://resources/levels/level_8.tres"
+is_unlocked = false
+level_complete_score = 7000
+level_complete_time_bonus = 3000
+level_complete_health_bonus = 1500
+level_complete_combo_bonus = 1500
+level_complete_perfect_bonus = 7000
+base_score = 7000
+time_bonus_multiplier = 35.0
+no_damage_bonus = 3000
+combo_bonus_multiplier = 25.0
+screen_effects = true
+screen_effect_intensity = 0.85
+background_scroll_speed = 0.7
+background_parallax_effect = true
+special_events = [{
+"event_type": "screen_shake",
+"trigger_time": 30.0,
+"duration": 5.0,
+"intensity": 15.0
+}, {
+"event_type": "bullet_storm",
+"trigger_time": 60.0,
+"duration": 15.0,
+"bullet_count": 60
+}, {
+"event_type": "power_surge",
+"trigger_time": 120.0,
+"duration": 25.0,
+"intensity": 5.0
+}, {
+"event_type": "time_slow",
+"trigger_time": 180.0,
+"duration": 10.0,
+"intensity": 0.3
+}, {
+"event_type": "screen_glitch",
+"trigger_time": 240.0,
+"duration": 8.0,
+"intensity": 0.8
+}]
+intro_dialog = [{
+"name": "Coworker",
+"portrait": "coworker",
+"text": "This is it - the secret data center. Look at all these servers!"
+}, {
+"name": "You",
+"portrait": "player",
+"text": "The emails down here look corrupted. They're even more dangerous than before."
+}, {
+"name": "IT Guy",
+"portrait": "it_guy",
+"text": "These must be the experimental versions. Be careful, they might have unpredictable attack patterns."
+}]
+outro_dialog = [{
+"name": "System",
+"portrait": "system",
+"text": "WARNING: BACKUP SYSTEMS COMPROMISED. INITIATING EMERGENCY PROTOCOL SIGMA-OMEGA."
+}, {
+"name": "IT Guy",
+"portrait": "it_guy",
+"text": "That doesn't sound good. The system is activating some kind of emergency protocol."
+}, {
+"name": "You",
+"portrait": "player",
+"text": "What's Sigma-Omega?"
+}, {
+"name": "Coworker",
+"portrait": "coworker",
+"text": "I don't know, but we need to get to the core server room. That's where we can shut everything down for good."
+}]

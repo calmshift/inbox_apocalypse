@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Inbox Apocalypse"
-run/main_scene="res://scenes/main.tscn"
+run/main_scene="res://scenes/main_menu.tscn"
 config/features=PackedStringArray("4.2")
 config/icon="res://assets/images/icon.png"
 
@@ -19,6 +19,8 @@ config/icon="res://assets/images/icon.png"
 
 Global="*res://scripts/global.gd"
 SoundManager="*res://scripts/sound_manager.gd"
+SoundPlaceholder="*res://scripts/sound_placeholder.gd"
+HitStop="*res://scripts/hit_stop.gd"
 
 [display]
 

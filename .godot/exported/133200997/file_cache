@@ -1,0 +1,14 @@
+res://resources/level_1.tres::28bebcfd44b4767aa75e95f1bd5bcbd6::1746187996::res://.godot/exported/133200997/export-10948501c7d2f79b9212ae72c4ae2491-level_1.res
+res://scenes/bullet_pattern.tscn::eff3aed77a87e3a0fa338d052f8c2fdb::1746187233::res://.godot/exported/133200997/export-58e2302c6caf00f0396eda4d4a7f5077-bullet_pattern.scn
+res://scenes/email_enemy.tscn::cdf0cef77a5ae7cb7fe4d89158d76133::1746187227::res://.godot/exported/133200997/export-e0bab50bdf0f5ae75ad1cbf4f187b7bb-email_enemy.scn
+res://scenes/enemy_bullet.tscn::0cb885b55efbbe35e9b69383d9f886e0::1746187216::res://.godot/exported/133200997/export-f713053f834f32e17a15d73d96ac4bb3-enemy_bullet.scn
+res://scenes/level_select.tscn::63d87a139a165508547acbb4792b03c2::1746187288::res://.godot/exported/133200997/export-0c939b19205267a005b2e63ce5e60e4d-level_select.scn
+res://scenes/main.tscn::693238434577fb4fa94ff8d8a12d45b6::1746187384::res://.godot/exported/133200997/export-3ad5c15c4f3250da0cc7c1af1770d85f-main.scn
+res://scenes/main_menu.tscn::fe3786f6c75fc2ead4b414bb5987d469::1746187278::res://.godot/exported/133200997/export-ea5c6ad4629af728dc514cefde332394-main_menu.scn
+res://scenes/options.tscn::0ab43a4f223c3e92a6687b6fca586722::1746187306::res://.godot/exported/133200997/export-6d4c40ac84d8b5db02eddff630ade0da-options.scn
+res://scenes/pause_menu.tscn::46b0c23eb8e6980b55263bb1ee2ecba0::1746187403::res://.godot/exported/133200997/export-ca2c2284eb591e72162d67219a0d2f87-pause_menu.scn
+res://scenes/player.tscn::f4cbafc2397d9d846fcde1a64507224d::1746187201::res://.godot/exported/133200997/export-234fb6894ec6226e856ab7f825500d3d-player.scn
+res://scenes/player_projectile.tscn::ed500a64fd059f044d9bc6aaedc48f15::1746187209::res://.godot/exported/133200997/export-6e735e434f94353cc88f02852e3b94f8-player_projectile.scn
+res://scenes/game.tscn::ebdd72c50c93b0e80847c9b68aacf63a::1746187630::res://.godot/exported/133200997/export-c2a7af834e91ff64325daddf58e45dc0-game.scn
+res://default_bus_layout.tres::6f7464aa9685562a863cb6233ed9ae41::1746187825::res://.godot/exported/133200997/export-19246414aa9fb561ced4b8dce477acec-default_bus_layout.res
+res://resources/levels/level_2.tres::ad30fbedb620d150f8282eefcf6779dd::1746187996::res://.godot/exported/133200997/export-0a56002c6f7124c114ae4f448a771deb-level_2.res

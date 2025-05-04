@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8j5veq3qxnvs"]
+
+[ext_resource type="Script" path="res://scripts/enemy_bullet.gd" id="1_0yvnj"]
+[ext_resource type="Texture2D" path="res://assets/images/enemy_projectile.png" id="2_yvnj2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1"]
+radius = 6.0
+
+[node name="EnemyBullet" type="Area2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_0yvnj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_yvnj2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1")
+
+[node name="LifetimeTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="timeout" from="LifetimeTimer" to="." method="_on_lifetime_timer_timeout"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

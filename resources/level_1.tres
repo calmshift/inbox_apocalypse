@@ -1,0 +1,138 @@
+[gd_resource type="Resource" script_class="LevelData" load_steps=7 format=3 uid="uid://c8j5veq3qxnvs"]
+
+[ext_resource type="Script" path="res://scripts/level_data.gd" id="1_0yvnj"]
+[ext_resource type="PackedScene" path="res://scenes/email_enemy.tscn" id="2_e4r3m"]
+[ext_resource type="PackedScene" path="res://scenes/bullet_pattern.tscn" id="3_f5g6h"]
+
+[sub_resource type="Curve2D" id="Curve2D_1"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 100, 50, 0, 0, 0, 0, 300, 100, 0, 0, 0, 0, 500, 150)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_2"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 500, 50, 0, 0, 0, 0, 300, 100, 0, 0, 0, 0, 100, 150)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_3"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 300, 50, 0, 0, 0, 0, 300, 150, 0, 0, 0, 0, 300, 250)
+}
+point_count = 3
+
+[resource]
+script = ExtResource("1_0yvnj")
+level_name = "Day 1: First Day"
+level_description = "Your first day at the office. Get ready for the email onslaught!"
+total_waves = 3
+waves = [{
+"enemies": [{
+"bullet_pattern": ExtResource("3_f5g6h"),
+"delay": 1.0,
+"enemy_scene": ExtResource("2_e4r3m"),
+"health": 20.0,
+"move_pattern": SubResource("Curve2D_1"),
+"sender": "boss@company.com",
+"speed": 80.0,
+"subject_line": "Welcome to the Company!",
+"target_position": Vector2(300, 100),
+"time_to_open": 5.0
+}, {
+"bullet_pattern": ExtResource("3_f5g6h"),
+"delay": 3.0,
+"enemy_scene": ExtResource("2_e4r3m"),
+"health": 20.0,
+"move_pattern": SubResource("Curve2D_2"),
+"sender": "hr@company.com",
+"speed": 80.0,
+"subject_line": "Important HR Update",
+"target_position": Vector2(300, 150),
+"time_to_open": 4.0
+}],
+"wave_name": "Orientation"
+}, {
+"enemies": [{
+"bullet_pattern": ExtResource("3_f5g6h"),
+"delay": 1.0,
+"enemy_scene": ExtResource("2_e4r3m"),
+"health": 30.0,
+"move_pattern": SubResource("Curve2D_3"),
+"sender": "marketing@company.com",
+"speed": 100.0,
+"subject_line": "Marketing Campaign",
+"target_position": Vector2(200, 100),
+"time_to_open": 4.0
+}, {
+"bullet_pattern": ExtResource("3_f5g6h"),
+"delay": 2.0,
+"enemy_scene": ExtResource("2_e4r3m"),
+"health": 30.0,
+"move_pattern": SubResource("Curve2D_1"),
+"sender": "sales@company.com",
+"speed": 100.0,
+"subject_line": "Sales Report",
+"target_position": Vector2(400, 100),
+"time_to_open": 4.0
+}, {
+"bullet_pattern": ExtResource("3_f5g6h"),
+"delay": 4.0,
+"enemy_scene": ExtResource("2_e4r3m"),
+"health": 30.0,
+"move_pattern": SubResource("Curve2D_2"),
+"sender": "newsletter@company.com",
+"speed": 100.0,
+"subject_line": "Weekly Newsletter",
+"target_position": Vector2(300, 200),
+"time_to_open": 3.0
+}],
+"wave_name": "Morning Rush"
+}, {
+"enemies": [{
+"bullet_pattern": ExtResource("3_f5g6h"),
+"delay": 1.0,
+"enemy_scene": ExtResource("2_e4r3m"),
+"health": 50.0,
+"move_pattern": SubResource("Curve2D_1"),
+"sender": "boss@company.com",
+"speed": 120.0,
+"subject_line": "URGENT: Project Update",
+"target_position": Vector2(200, 150),
+"time_to_open": 3.0
+}, {
+"bullet_pattern": ExtResource("3_f5g6h"),
+"delay": 2.0,
+"enemy_scene": ExtResource("2_e4r3m"),
+"health": 40.0,
+"move_pattern": SubResource("Curve2D_2"),
+"sender": "it@company.com",
+"speed": 120.0,
+"subject_line": "System Maintenance",
+"target_position": Vector2(400, 150),
+"time_to_open": 3.0
+}, {
+"bullet_pattern": ExtResource("3_f5g6h"),
+"delay": 3.0,
+"enemy_scene": ExtResource("2_e4r3m"),
+"health": 40.0,
+"move_pattern": SubResource("Curve2D_3"),
+"sender": "coworker@company.com",
+"speed": 120.0,
+"subject_line": "Lunch Plans?",
+"target_position": Vector2(300, 100),
+"time_to_open": 3.0
+}, {
+"bullet_pattern": ExtResource("3_f5g6h"),
+"delay": 5.0,
+"enemy_scene": ExtResource("2_e4r3m"),
+"health": 60.0,
+"move_pattern": SubResource("Curve2D_1"),
+"sender": "boss@company.com",
+"speed": 150.0,
+"subject_line": "End of Day Report",
+"target_position": Vector2(300, 200),
+"time_to_open": 2.0
+}],
+"wave_name": "Afternoon Crunch"
+}]

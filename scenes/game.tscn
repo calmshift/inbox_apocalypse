@@ -1,0 +1,284 @@
+[gd_scene load_steps=9 format=3 uid="uid://c8j5veq3qxnvs"]
+
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_0yvnj"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="2_yvnj2"]
+[ext_resource type="Script" path="res://scripts/game_ui.gd" id="3_yvnj3"]
+[ext_resource type="PackedScene" path="res://scenes/pause_menu.tscn" id="4_yvnj4"]
+[ext_resource type="Texture2D" path="res://assets/ui/reply_button.png" id="5_yvnj5"]
+[ext_resource type="Texture2D" path="res://assets/ui/forward_button.png" id="6_yvnj6"]
+[ext_resource type="Texture2D" path="res://assets/ui/delete_button.png" id="7_yvnj7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1"]
+bg_color = Color(0.8, 0.2, 0.2, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="Game" type="Node"]
+script = ExtResource("1_0yvnj")
+player_scene = ExtResource("2_yvnj2")
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.15, 0.15, 0.15, 1)
+
+[node name="PlayerSpawnPosition" type="Marker2D" parent="."]
+position = Vector2(640, 600)
+
+[node name="EnemySpawnPoints" type="Node2D" parent="."]
+
+[node name="Spawn1" type="Marker2D" parent="EnemySpawnPoints"]
+position = Vector2(200, 100)
+
+[node name="Spawn2" type="Marker2D" parent="EnemySpawnPoints"]
+position = Vector2(640, 100)
+
+[node name="Spawn3" type="Marker2D" parent="EnemySpawnPoints"]
+position = Vector2(1080, 100)
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("3_yvnj3")
+
+[node name="StressBar" type="ProgressBar" parent="UI"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_1")
+max_value = 100.0
+step = 1.0
+value = 30.0
+show_percentage = false
+
+[node name="StressLabel" type="Label" parent="UI/StressBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -11.5
+offset_right = 25.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "STRESS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="UI"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -200.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 46.0
+grow_horizontal = 0
+text = "Score: 0"
+horizontal_alignment = 2
+
+[node name="WaveLabel" type="Label" parent="UI"]
+offset_left = 20.0
+offset_top = 50.0
+offset_right = 200.0
+offset_bottom = 76.0
+text = "Wave: 1"
+
+[node name="ActionButtons" type="HBoxContainer" parent="UI"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -80.0
+offset_right = 200.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="ReplyButton" type="TextureButton" parent="UI/ActionButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("5_yvnj5")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="KeyHint" type="Label" parent="UI/ActionButtons/ReplyButton"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "[R]"
+horizontal_alignment = 1
+
+[node name="ForwardButton" type="TextureButton" parent="UI/ActionButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("6_yvnj6")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="KeyHint" type="Label" parent="UI/ActionButtons/ForwardButton"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "[F]"
+horizontal_alignment = 1
+
+[node name="DeleteButton" type="TextureButton" parent="UI/ActionButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("7_yvnj7")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="KeyHint" type="Label" parent="UI/ActionButtons/DeleteButton"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "[D]"
+horizontal_alignment = 1
+
+[node name="GameOverPanel" type="Panel" parent="UI"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -100.0
+offset_right = 200.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="UI/GameOverPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -92.5
+offset_top = 20.0
+offset_right = 92.5
+offset_bottom = 46.0
+grow_horizontal = 2
+text = "STRESS OVERLOAD!"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/GameOverPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -40.0
+offset_right = 100.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RetryButton" type="Button" parent="UI/GameOverPanel/VBoxContainer"]
+layout_mode = 2
+text = "Try Again"
+
+[node name="MainMenuButton" type="Button" parent="UI/GameOverPanel/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+
+[node name="LevelCompletePanel" type="Panel" parent="UI"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -100.0
+offset_right = 200.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="UI/LevelCompletePanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -92.5
+offset_top = 20.0
+offset_right = 92.5
+offset_bottom = 46.0
+grow_horizontal = 2
+text = "INBOX CLEARED!"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/LevelCompletePanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -40.0
+offset_right = 100.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NextLevelButton" type="Button" parent="UI/LevelCompletePanel/VBoxContainer"]
+layout_mode = 2
+text = "Next Day"
+
+[node name="MainMenuButton" type="Button" parent="UI/LevelCompletePanel/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+
+[connection signal="pressed" from="UI/ActionButtons/ReplyButton" to="UI" method="_on_reply_button_pressed"]
+[connection signal="pressed" from="UI/ActionButtons/ForwardButton" to="UI" method="_on_forward_button_pressed"]
+[connection signal="pressed" from="UI/ActionButtons/DeleteButton" to="UI" method="_on_delete_button_pressed"]
+[connection signal="pressed" from="UI/GameOverPanel/VBoxContainer/RetryButton" to="UI" method="_on_retry_button_pressed"]
+[connection signal="pressed" from="UI/GameOverPanel/VBoxContainer/MainMenuButton" to="UI" method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="UI/LevelCompletePanel/VBoxContainer/NextLevelButton" to="UI" method="_on_next_level_button_pressed"]
+[connection signal="pressed" from="UI/LevelCompletePanel/VBoxContainer/MainMenuButton" to="UI" method="_on_main_menu_button_pressed"]
+
+[node name="PauseMenu" parent="." instance=ExtResource("4_yvnj4")]
+visible = false

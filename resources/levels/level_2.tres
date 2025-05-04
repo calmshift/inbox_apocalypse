@@ -1,0 +1,240 @@
+[gd_resource type="Resource" script_class="LevelData" load_steps=7 format=3 uid="uid://c8j5veq3qxnvt"]
+
+[ext_resource type="Script" path="res://scripts/level_data.gd" id="1_0yvnj"]
+[ext_resource type="PackedScene" path="res://scenes/email_enemy.tscn" id="2_e4r3m"]
+[ext_resource type="PackedScene" path="res://scenes/bullet_pattern.tscn" id="3_f5g6h"]
+
+[sub_resource type="Curve2D" id="Curve2D_1"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 100, 50, 0, 0, 0, 0, 300, 100, 0, 0, 0, 0, 500, 150)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_2"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 500, 50, 0, 0, 0, 0, 300, 100, 0, 0, 0, 0, 100, 150)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_3"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 300, 50, 0, 0, 0, 0, 300, 150, 0, 0, 0, 0, 300, 250)
+}
+point_count = 3
+
+[resource]
+script = ExtResource("1_0yvnj")
+level_name = "Day 2: Deadline Day"
+level_description = "The project deadline is approaching. Emails are coming in faster!"
+total_waves = 4
+waves = [{
+"enemies": [{
+"bullet_pattern": ExtResource("3_f5g6h"),
+"delay": 1.0,
+"enemy_scene": ExtResource("2_e4r3m"),
+"health": 30.0,
+"move_pattern": SubResource("Curve2D_1"),
+"sender": "boss@company.com",
+"speed": 100.0,
+"subject_line": "Morning Briefing",
+"target_position": Vector2(300, 100),
+"time_to_open": 4.0
+}, {
+"bullet_pattern": ExtResource("3_f5g6h"),
+"delay": 2.0,
+"enemy_scene": ExtResource("2_e4r3m"),
+"health": 30.0,
+"move_pattern": SubResource("Curve2D_2"),
+"sender": "client@client.com",
+"speed": 100.0,
+"subject_line": "Project Questions",
+"target_position": Vector2(300, 150),
+"time_to_open": 4.0
+}, {
+"bullet_pattern": ExtResource("3_f5g6h"),
+"delay": 3.0,
+"enemy_scene": ExtResource("2_e4r3m"),
+"health": 30.0,
+"move_pattern": SubResource("Curve2D_3"),
+"sender": "newsletter@spam.com",
+"speed": 100.0,
+"subject_line": "HOT DEALS!!!",
+"target_position": Vector2(300, 200),
+"time_to_open": 3.0
+}],
+"wave_name": "Morning Chaos"
+}, {
+"enemies": [{
+"bullet_pattern": ExtResource("3_f5g6h"),
+"delay": 1.0,
+"enemy_scene": ExtResource("2_e4r3m"),
+"health": 40.0,
+"move_pattern": SubResource("Curve2D_1"),
+"sender": "boss@company.com",
+"speed": 120.0,
+"subject_line": "Status Update?",
+"target_position": Vector2(200, 100),
+"time_to_open": 3.0
+}, {
+"bullet_pattern": ExtResource("3_f5g6h"),
+"delay": 1.5,
+"enemy_scene": ExtResource("2_e4r3m"),
+"health": 40.0,
+"move_pattern": SubResource("Curve2D_2"),
+"sender": "coworker@company.com",
+"speed": 120.0,
+"subject_line": "Need Help!",
+"target_position": Vector2(400, 100),
+"time_to_open": 3.0
+}, {
+"bullet_pattern": ExtResource("3_f5g6h"),
+"delay": 2.0,
+"enemy_scene": ExtResource("2_e4r3m"),
+"health": 40.0,
+"move_pattern": SubResource("Curve2D_3"),
+"sender": "hr@company.com",
+"speed": 120.0,
+"subject_line": "Mandatory Training",
+"target_position": Vector2(300, 150),
+"time_to_open": 3.0
+}, {
+"bullet_pattern": ExtResource("3_f5g6h"),
+"delay": 3.0,
+"enemy_scene": ExtResource("2_e4r3m"),
+"health": 40.0,
+"move_pattern": SubResource("Curve2D_1"),
+"sender": "marketing@company.com",
+"speed": 120.0,
+"subject_line": "Campaign Metrics",
+"target_position": Vector2(300, 200),
+"time_to_open": 3.0
+}],
+"wave_name": "Midday Madness"
+}, {
+"enemies": [{
+"bullet_pattern": ExtResource("3_f5g6h"),
+"delay": 0.5,
+"enemy_scene": ExtResource("2_e4r3m"),
+"health": 50.0,
+"move_pattern": SubResource("Curve2D_1"),
+"sender": "boss@company.com",
+"speed": 140.0,
+"subject_line": "WHERE IS THE REPORT?",
+"target_position": Vector2(200, 150),
+"time_to_open": 2.5
+}, {
+"bullet_pattern": ExtResource("3_f5g6h"),
+"delay": 1.0,
+"enemy_scene": ExtResource("2_e4r3m"),
+"health": 50.0,
+"move_pattern": SubResource("Curve2D_2"),
+"sender": "client@client.com",
+"speed": 140.0,
+"subject_line": "Urgent Changes",
+"target_position": Vector2(400, 150),
+"time_to_open": 2.5
+}, {
+"bullet_pattern": ExtResource("3_f5g6h"),
+"delay": 1.5,
+"enemy_scene": ExtResource("2_e4r3m"),
+"health": 50.0,
+"move_pattern": SubResource("Curve2D_3"),
+"sender": "sales@company.com",
+"speed": 140.0,
+"subject_line": "New Requirements",
+"target_position": Vector2(300, 100),
+"time_to_open": 2.5
+}, {
+"bullet_pattern": ExtResource("3_f5g6h"),
+"delay": 2.0,
+"enemy_scene": ExtResource("2_e4r3m"),
+"health": 50.0,
+"move_pattern": SubResource("Curve2D_1"),
+"sender": "newsletter@spam.com",
+"speed": 140.0,
+"subject_line": "YOU WON'T BELIEVE THIS!",
+"target_position": Vector2(300, 200),
+"time_to_open": 2.5
+}, {
+"bullet_pattern": ExtResource("3_f5g6h"),
+"delay": 3.0,
+"enemy_scene": ExtResource("2_e4r3m"),
+"health": 50.0,
+"move_pattern": SubResource("Curve2D_2"),
+"sender": "it@company.com",
+"speed": 140.0,
+"subject_line": "System Shutdown",
+"target_position": Vector2(250, 150),
+"time_to_open": 2.5
+}],
+"wave_name": "Afternoon Rush"
+}, {
+"enemies": [{
+"bullet_pattern": ExtResource("3_f5g6h"),
+"delay": 0.5,
+"enemy_scene": ExtResource("2_e4r3m"),
+"health": 80.0,
+"move_pattern": SubResource("Curve2D_1"),
+"sender": "CEO@company.com",
+"speed": 160.0,
+"subject_line": "FINAL DEADLINE",
+"target_position": Vector2(300, 150),
+"time_to_open": 2.0
+}, {
+"bullet_pattern": ExtResource("3_f5g6h"),
+"delay": 3.0,
+"enemy_scene": ExtResource("2_e4r3m"),
+"health": 60.0,
+"move_pattern": SubResource("Curve2D_2"),
+"sender": "boss@company.com",
+"speed": 160.0,
+"subject_line": "Project Status NOW",
+"target_position": Vector2(200, 150),
+"time_to_open": 2.0
+}, {
+"bullet_pattern": ExtResource("3_f5g6h"),
+"delay": 4.0,
+"enemy_scene": ExtResource("2_e4r3m"),
+"health": 60.0,
+"move_pattern": SubResource("Curve2D_3"),
+"sender": "client@client.com",
+"speed": 160.0,
+"subject_line": "Last Minute Changes",
+"target_position": Vector2(400, 150),
+"time_to_open": 2.0
+}, {
+"bullet_pattern": ExtResource("3_f5g6h"),
+"delay": 5.0,
+"enemy_scene": ExtResource("2_e4r3m"),
+"health": 60.0,
+"move_pattern": SubResource("Curve2D_1"),
+"sender": "hr@company.com",
+"speed": 160.0,
+"subject_line": "Overtime Approval",
+"target_position": Vector2(300, 100),
+"time_to_open": 2.0
+}, {
+"bullet_pattern": ExtResource("3_f5g6h"),
+"delay": 6.0,
+"enemy_scene": ExtResource("2_e4r3m"),
+"health": 60.0,
+"move_pattern": SubResource("Curve2D_2"),
+"sender": "coworker@company.com",
+"speed": 160.0,
+"subject_line": "Help Me Finish!",
+"target_position": Vector2(300, 200),
+"time_to_open": 2.0
+}, {
+"bullet_pattern": ExtResource("3_f5g6h"),
+"delay": 8.0,
+"enemy_scene": ExtResource("2_e4r3m"),
+"health": 100.0,
+"move_pattern": SubResource("Curve2D_3"),
+"sender": "CEO@company.com",
+"speed": 180.0,
+"subject_line": "PROJECT REVIEW MEETING",
+"target_position": Vector2(300, 150),
+"time_to_open": 1.5
+}],
+"wave_name": "End of Day Crisis"
+}]

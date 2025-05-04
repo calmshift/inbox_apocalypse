@@ -1,0 +1,119 @@
+[gd_scene load_steps=12 format=3 uid="uid://bqnvyq1xp4qxs"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_0yvnj"]
+[ext_resource type="Texture2D" path="res://assets/images/player.png" id="2_yvnj2"]
+[ext_resource type="Texture2D" path="res://assets/images/hitbox.png" id="3_yvnj3"]
+[ext_resource type="Script" path="res://scripts/reply_attack.gd" id="4_yvnj4"]
+[ext_resource type="Script" path="res://scripts/forward_attack.gd" id="5_yvnj5"]
+[ext_resource type="Script" path="res://scripts/delete_attack.gd" id="6_yvnj6"]
+[ext_resource type="PackedScene" path="res://scenes/player_projectile.tscn" id="7_yvnj7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1"]
+radius = 6.0
+
+[sub_resource type="Animation" id="Animation_1"]
+resource_name = "damage_flash"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.3, 0.3, 1), Color(1, 0.7, 0.7, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2"]
+resource_name = "death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1"]
+_data = {
+"damage_flash": SubResource("Animation_1"),
+"death": SubResource("Animation_2")
+}
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("1_0yvnj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_yvnj2")
+
+[node name="HitboxSprite" type="Sprite2D" parent="."]
+texture = ExtResource("3_yvnj3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1")
+}
+
+[node name="InvincibilityTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="ReplyAttack" type="Node2D" parent="."]
+script = ExtResource("4_yvnj4")
+projectile_scene = ExtResource("7_yvnj7")
+
+[node name="CooldownTimer" type="Timer" parent="ReplyAttack"]
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ReplyAttack"]
+
+[node name="ForwardAttack" type="Node2D" parent="."]
+script = ExtResource("5_yvnj5")
+projectile_scene = ExtResource("7_yvnj7")
+
+[node name="CooldownTimer" type="Timer" parent="ForwardAttack"]
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ForwardAttack"]
+
+[node name="DeleteAttack" type="Node2D" parent="."]
+script = ExtResource("6_yvnj6")
+
+[node name="CooldownTimer" type="Timer" parent="DeleteAttack"]
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="DeleteAttack"]
+
+[node name="ExplosionArea" type="Area2D" parent="DeleteAttack"]
+collision_layer = 0
+collision_mask = 4
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeleteAttack/ExplosionArea"]
+shape = SubResource("CircleShape2D_1")
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]
+[connection signal="timeout" from="ReplyAttack/CooldownTimer" to="ReplyAttack" method="_on_cooldown_timer_timeout"]
+[connection signal="timeout" from="ForwardAttack/CooldownTimer" to="ForwardAttack" method="_on_cooldown_timer_timeout"]
+[connection signal="timeout" from="DeleteAttack/CooldownTimer" to="DeleteAttack" method="_on_cooldown_timer_timeout"]
+[connection signal="area_entered" from="DeleteAttack/ExplosionArea" to="DeleteAttack" method="_on_explosion_area_area_entered"]

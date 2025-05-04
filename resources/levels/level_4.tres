@@ -1,0 +1,48 @@
+[gd_resource type="Resource" script_class="LevelData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/level_data.gd" id="1_yjk2p"]
+
+[resource]
+script = ExtResource("1_yjk2p")
+level_name = "Day 4: Newsletter Nightmare"
+level_description = "The company newsletter system has gone haywire, flooding your inbox with corporate propaganda."
+music_track = "level_4"
+difficulty = 4
+boss_level = false
+total_waves = 5
+time_limit = 270.0
+stress_recovery_rate = 1.2
+power_up_chance = 0.25
+keyboard_jam_chance = 0.15
+base_score = 2500
+time_bonus_multiplier = 18.0
+no_damage_bonus = 1200
+combo_bonus_multiplier = 10.0
+screen_effects = true
+screen_effect_intensity = 0.5
+intro_dialog = [{
+"name": "IT Guy",
+"portrait": "it_guy",
+"text": "The newsletter system is malfunctioning. It's sending out multiple copies of every corporate announcement."
+}, {
+"name": "You",
+"portrait": "player",
+"text": "I found something strange in the server room last night. The emails are being controlled by some kind of AI."
+}, {
+"name": "IT Guy",
+"portrait": "it_guy",
+"text": "Project Sigma... it's worse than I thought. They're using us as test subjects. Be careful today."
+}]
+outro_dialog = [{
+"name": "Boss",
+"portrait": "boss",
+"text": "You've been performing admirably under pressure. The CEO would like to meet with you tomorrow."
+}, {
+"name": "You",
+"portrait": "player",
+"text": "The CEO? Why would they want to meet with me?"
+}, {
+"name": "Boss",
+"portrait": "boss",
+"text": "Your email management skills have been... noticed. Consider it an honor. Few return from such meetings."
+}]

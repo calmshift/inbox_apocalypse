@@ -1,0 +1,48 @@
+[gd_resource type="Resource" script_class="LevelData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/level_data.gd" id="1_yjk2p"]
+
+[resource]
+script = ExtResource("1_yjk2p")
+level_name = "Day 3: Urgent Matters"
+level_description = "The executives are demanding immediate responses to their urgent emails."
+music_track = "level_3"
+difficulty = 3
+boss_level = false
+total_waves = 5
+time_limit = 240.0
+stress_recovery_rate = 1.5
+power_up_chance = 0.2
+keyboard_jam_chance = 0.1
+base_score = 2000
+time_bonus_multiplier = 15.0
+no_damage_bonus = 1000
+combo_bonus_multiplier = 8.0
+screen_effects = true
+screen_effect_intensity = 0.4
+intro_dialog = [{
+"name": "Boss",
+"portrait": "boss",
+"text": "The executives are visiting today. All their emails are marked URGENT and need immediate attention!"
+}, {
+"name": "You",
+"portrait": "player",
+"text": "But there are so many of them... and they move so fast."
+}, {
+"name": "Coworker",
+"portrait": "coworker",
+"text": "Did you notice how Jenkins disappeared yesterday after failing to respond to the CEO's email? Weird, right?"
+}]
+outro_dialog = [{
+"name": "You",
+"portrait": "player",
+"text": "Those urgent emails were practically attacking me! This isn't normal email behavior."
+}, {
+"name": "IT Guy",
+"portrait": "it_guy",
+"text": "I've been looking into Project Sigma. It seems to be some kind of AI experiment using employee email patterns."
+}, {
+"name": "Coworker",
+"portrait": "coworker",
+"text": "Shhh! The walls have ears. Meet me in the server room after hours. I have something to show you."
+}]

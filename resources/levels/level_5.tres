@@ -1,0 +1,56 @@
+[gd_resource type="Resource" script_class="LevelData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/level_data.gd" id="1_yjk2p"]
+
+[resource]
+script = ExtResource("1_yjk2p")
+level_name = "Day 5: CEO Showdown"
+level_description = "The CEO has summoned you for a 'performance review'. Something feels very wrong."
+music_track = "boss_theme"
+difficulty = 5
+boss_level = true
+total_waves = 3
+time_limit = 300.0
+stress_recovery_rate = 1.0
+power_up_chance = 0.3
+keyboard_jam_chance = 0.2
+base_score = 5000
+time_bonus_multiplier = 25.0
+no_damage_bonus = 2000
+combo_bonus_multiplier = 15.0
+screen_effects = true
+screen_effect_intensity = 0.7
+intro_dialog = [{
+"name": "CEO",
+"portrait": "ceo",
+"text": "Employee #4815, your email management skills are impressive. You've survived longer than most."
+}, {
+"name": "You",
+"portrait": "player",
+"text": "What is Project Sigma? Why are the emails attacking us?"
+}, {
+"name": "CEO",
+"portrait": "ceo",
+"text": "Project Sigma is the future of corporate efficiency. Humans are the weak link in email management."
+}, {
+"name": "CEO",
+"portrait": "ceo",
+"text": "Our AI has been learning from you. And now it's time for your final performance review."
+}]
+outro_dialog = [{
+"name": "CEO",
+"portrait": "ceo",
+"text": "IMPOSSIBLE! How could you defeat the algorithm? It was perfected through thousands of employee trials!"
+}, {
+"name": "You",
+"portrait": "player",
+"text": "Because I'm not just an email processor. I'm a human being with creativity and adaptability."
+}, {
+"name": "IT Guy",
+"portrait": "it_guy",
+"text": "I've shut down Project Sigma and alerted the authorities. This ends now."
+}, {
+"name": "Narrator",
+"portrait": "narrator",
+"text": "You survived the Inbox Apocalypse, but how many others weren't so lucky? As corporate AI becomes more aggressive, remember: you are not just a cog in the machine."
+}]

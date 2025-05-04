@@ -1,0 +1,48 @@
+[gd_resource type="Resource" script_class="LevelData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/level_data.gd" id="1_yjk2p"]
+
+[resource]
+script = ExtResource("1_yjk2p")
+level_name = "Day 1: First Day Jitters"
+level_description = "Your first day at Megacorp Industries. The emails seem... aggressive."
+music_track = "level_1"
+difficulty = 1
+boss_level = false
+total_waves = 3
+time_limit = 180.0
+stress_recovery_rate = 2.0
+power_up_chance = 0.1
+keyboard_jam_chance = 0.0
+base_score = 1000
+time_bonus_multiplier = 10.0
+no_damage_bonus = 500
+combo_bonus_multiplier = 5.0
+screen_effects = false
+screen_effect_intensity = 0.2
+intro_dialog = [{
+"name": "Boss",
+"portrait": "boss",
+"text": "Welcome to your first day at Megacorp Industries! I expect you to handle ALL your emails promptly."
+}, {
+"name": "You",
+"portrait": "player",
+"text": "Thanks, I'll do my best to keep up with the inbox."
+}, {
+"name": "IT Guy",
+"portrait": "it_guy",
+"text": "Remember what I showed you - Reply, Forward, and Delete are your best tools. Good luck!"
+}]
+outro_dialog = [{
+"name": "Boss",
+"portrait": "boss",
+"text": "Not bad for your first day. Tomorrow will be... more challenging."
+}, {
+"name": "You",
+"portrait": "player",
+"text": "Is it just me or did those emails seem unusually aggressive?"
+}, {
+"name": "IT Guy",
+"portrait": "it_guy",
+"text": "That's just how corporate email works. Nothing to worry about... yet."
+}]
